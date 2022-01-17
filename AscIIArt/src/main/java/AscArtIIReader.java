@@ -9,24 +9,21 @@ public class AscArtIIReader {
     static final char LAST_CHAR = 'z';
     static final char QU_MARK = LAST_CHAR + 1;
 
-    private static FileReader getFileReader() throws FileNotFoundException {
-        return new FileReader("src\\main\\java\\ASCIIArt1.txt");//reads first input file when provided with its path
-    }
-
-    private static FileReader getFileReader1() throws FileNotFoundException {
-        return new FileReader("src\\main\\java\\ASCIIArt2.txt");//reads second input file when provided with its path
-    }
-
     public static void printChar(int line, char character, String[] wholeAlphabet, int width) {
         int begin = (character - FIRST_CHAR) * width;
         int end = begin + width;
         System.out.print(wholeAlphabet[line].substring(begin, end));
     }
 
+    private static FileReader getSource(String s) throws FileNotFoundException {
+        return new FileReader(s);
+    }
+
     public static void main(String[] args) throws FileNotFoundException { //more files can be read by modifying x to the new amount of files being read in: Scanner[x]
         Scanner[] sc = new Scanner[2];
-        sc[0] = new Scanner(getFileReader());
-        sc[1] = new Scanner(getFileReader1()); //if you want to read more files at the same time, please create an instance of sc[] for each file
+        sc[0] = new Scanner(getSource("src\\main\\java\\ASCIIArt1.txt"));
+        sc[1] = new Scanner(getSource("src\\main\\java\\ASCIIArt2.txt"));
+        //if you want to read more files at the same time, please create an instance of sc[] for each file
 
         for (int n = 0; n < 2; n++) { //where 2 is the number of input files, if more files are being read please change 2 to the current amount of files being read
 
